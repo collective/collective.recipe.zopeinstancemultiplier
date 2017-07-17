@@ -39,7 +39,7 @@ setup(
     keywords='zc.buildout buildout recipe supervisor',
     author='Rafael Oliveira',
     author_email='rafaelbco@gmail.com',
-    url='http://pypi.python.org/pypi/collective.recipe.zopeinstancemultiplier',
+    url='https://github.com/collective/collective.recipe.zopeinstancemultiplier',
     license='GPL',
     packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['collective', 'collective.recipe'],
