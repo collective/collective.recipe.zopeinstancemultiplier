@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.2 (unreleased)
+0.0.2 (2017-07-17)
 ------------------
 
 - Fix description in ``setup.py``.
