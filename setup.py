@@ -23,7 +23,7 @@ tests_require = [
 setup(
     name='collective.recipe.zopeinstancemultiplier',
     version=version,
-    description='Offers a new syntax to configure collective.recipe.supervisor',
+    description='Makes it easier to configure multiple Zope instances.',
     long_description=long_description,
     # Get more strings from
     # http://pypi.python.org/pypi?:action=list_classifiers
