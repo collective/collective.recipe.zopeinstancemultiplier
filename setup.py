@@ -7,7 +7,7 @@ import os
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.0.2.dev0'
+version = '0.0.1.dev0'
 
 long_description = '\n'.join([
     read('README.rst'),
@@ -28,12 +28,13 @@ setup(
     # Get more strings from
     # http://pypi.python.org/pypi?:action=list_classifiers
     classifiers=[
+        'Framework :: Buildout :: Recipe',
         'Framework :: Buildout',
         'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
-        'Programming Language :: Python',
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Build Tools',
     ],
     keywords='zc.buildout buildout recipe supervisor',
     author='Rafael Oliveira',
