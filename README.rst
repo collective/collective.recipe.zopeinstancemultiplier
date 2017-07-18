@@ -138,5 +138,77 @@ Running the buildout gives us::
     custom-option = custom-value
     http-address = 8083
 
+
+Depending on the name of the part (``${:_buildout_section_name}`` support)
+==========================================================================
+
+Sometimes an option value must include the name of the part. Buildout supports this use case by
+providing the special value ``_buildout_section_name_``.
+
+The following example shows how this special value is used is commonly used in the multiple Zope
+instances scenario, without using this recipe::
+
+    [instance]
+    ...
+    http-address = 8080
+    special-log-path = /path/to/the/logs/${:_buildout_section_name}.log
+
+    [instance-1]
+    <= instance
+    http-address = 8081
+
+    [instance-2]
+    <= instance
+    http-address = 8082
+
+An attempt to adapt the previous example to work with this recipe would look like this::
+
+    [instance]
+    ...
+    http-address = 8080
+    special-log-path = /path/to/the/logs/${:_buildout_section_name}.log
+
+    [instance-multiplier]
+    recipe = collective.recipe.zopeinstancemultiplier
+    instance-part = instance
+    count = 2
+
+This, however, would *fail*. Because the way Buildout works, at the time the recipe has access
+to the ``instance`` part to multiply it, the variable substitution would already have occurred.
+
+To make it work a simple adaptation is needed. Simply include an extra dollar sign in order to
+escape the variable. Here's an example::
+
+    >>> write('buildout.cfg',
+    ... """
+    ... [buildout]
+    ... parts = instance instance-multiplier
+    ...
+    ... [instance]
+    ... recipe = collective.recipe.zopeinstancemultiplier:printer
+    ... http-address = 8080
+    ... special-log-path = /path/to/the/logs/$${:_buildout_section_name_}.log
+    ...
+    ... [instance-multiplier]
+    ... recipe = collective.recipe.zopeinstancemultiplier
+    ... instance-part = instance
+    ... count = 2
+    ... """)
+
+Running the buildout gives us::
+
+    >>> print 'start', system(buildout)
+    start ...
+    Installing instance.
+    special-log-path = /path/to/the/logs/instance.log
+    http-address = 8080
+    Installing instance-1.
+    special-log-path = /path/to/the/logs/instance-1.log
+    http-address = 8081
+    Installing instance-2.
+    special-log-path = /path/to/the/logs/instance-2.log
+    http-address = 8082
+    ...
+
 .. References:
 .. _`plone.recipe.zope2instance`: https://pypi.python.org/pypi/plone.recipe.zope2instance

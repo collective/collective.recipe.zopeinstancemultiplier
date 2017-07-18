@@ -21,12 +21,19 @@ class Recipe(object):
             new_port = base_port + new_instance_number
             new_instance_part['http-address'] = self._format_http_address(base_ip, new_port)
             new_instance_name = '{}-{}'.format(instance_part_name, new_instance_number)
+            self._replace_part_name(new_instance_part, new_instance_name)
             buildout[new_instance_name] = new_instance_part
+
+        self._replace_part_name(instance_part, instance_part_name)
 
         options['next-http-address'] = self._format_http_address(base_ip, base_port + count + 1)
 
     def _format_http_address(self, ip, port):
         return '{}:{}'.format(ip, port) if ip else str(port)
+
+    def _replace_part_name(self, part, part_name):
+        for (k, v) in part.iteritems():
+            part[k] = v.replace('$${:_buildout_section_name_}', part_name)
 
     def install(self):
         return ()
