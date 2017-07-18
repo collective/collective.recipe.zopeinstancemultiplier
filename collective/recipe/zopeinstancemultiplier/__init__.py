@@ -54,7 +54,7 @@ class PrinterRecipe(object):
     def install(self):
         print '\n'.join(
             '{} = {}'.format(k, v)
-            for (k, v) in self.options.iteritems()
+            for (k, v) in sorted(self.options.iteritems())
             if k != 'recipe'
         )
         return ()

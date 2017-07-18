@@ -49,16 +49,16 @@ Running the buildout gives us::
     >>> print 'start', system(buildout)
     start...
     Installing instance.
-    option-bar = value-bar
     http-address = 8080
+    option-bar = value-bar
     option-foo = value-foo
     Installing instance-1.
-    option-bar = value-bar
     http-address = 8081
+    option-bar = value-bar
     option-foo = value-foo
     Installing instance-2.
-    option-bar = value-bar
     http-address = 8082
+    option-bar = value-bar
     option-foo = value-foo
     ...
 
@@ -200,14 +200,14 @@ Running the buildout gives us::
     >>> print 'start', system(buildout)
     start ...
     Installing instance.
-    special-log-path = /path/to/the/logs/instance.log
     http-address = 8080
+    special-log-path = /path/to/the/logs/instance.log
     Installing instance-1.
-    special-log-path = /path/to/the/logs/instance-1.log
     http-address = 8081
+    special-log-path = /path/to/the/logs/instance-1.log
     Installing instance-2.
-    special-log-path = /path/to/the/logs/instance-2.log
     http-address = 8082
+    special-log-path = /path/to/the/logs/instance-2.log
     ...
 
 .. References:
