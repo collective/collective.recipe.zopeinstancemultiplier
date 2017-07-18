@@ -4,7 +4,7 @@ Changelog
 0.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for the ``_buildout_section_name`` special variable.
 
 
 0.0.2 (2017-07-17)
